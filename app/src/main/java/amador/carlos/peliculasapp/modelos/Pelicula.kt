@@ -5,5 +5,7 @@ data class Pelicula(
     var titulo: String,
     var categoria: String,
     var duracion: String,
-    var sinopsis: String
+    var sinopsis: String,
+    var foto: Int,
+    var fotoUri: String? = null
 )

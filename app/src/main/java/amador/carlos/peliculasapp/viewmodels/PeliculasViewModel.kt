@@ -1,5 +1,6 @@
 package amador.carlos.peliculasapp.viewmodels
 
+import amador.carlos.peliculasapp.R
 import amador.carlos.peliculasapp.modelos.Pelicula
 import amador.carlos.peliculasapp.modelos.PeliculaRepositorio
 import androidx.compose.runtime.State
@@ -16,6 +17,27 @@ class PeliculasViewModel(val repo: PeliculaRepositorio): ViewModel() {
     }
 
     private fun getPeliculas() {
+        _peliculas.value = repo.getPeliculas()
+    }
+
+    fun agregaPelicula(titulo: String, categoria: String, duracion:String, sinopsis:String, fotoURI: String?){
+        val nuevoID = _peliculas.value.size + 1
+        val pelicula = Pelicula(
+            nuevoID,
+            titulo,
+            categoria,
+            duracion,
+            sinopsis,
+            R.drawable.tabler_movie,
+            fotoURI
+
+        )
+        repo.agregarPelicula(pelicula)
+        _peliculas.value = repo.getPeliculas()
+    }
+
+    fun eliminarPelicula(peliculaID: Int){
+        repo.eliminarPelicula(peliculaID)
         _peliculas.value = repo.getPeliculas()
     }
 }
