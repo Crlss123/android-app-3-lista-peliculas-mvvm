@@ -31,4 +31,12 @@ class PeliculaRepositorio {
         peliculas.removeAll { it.id == peliculaID }
     }
 
+    fun editarPelicula(pelicula: Pelicula) {
+        val indice = peliculas.indexOfFirst { it.id == pelicula.id }
+
+        if (indice != -1) {
+            peliculas[indice] = pelicula
+        }
+    }
+
 }
